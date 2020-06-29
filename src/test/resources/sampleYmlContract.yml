@@ -1,0 +1,20 @@
+request:
+  method: POST
+  url: /fraudcheck
+  body:
+    clientId: 437ea752-7361-4d55-ad3d-2dcc40204acf
+    loanAmount: 99999
+  headers:
+    Content-Type: application/vnd.fraud.v1+json;charset=UTF-8
+  matchers:
+    body:
+      - path: $.['clientId']
+        type: by_regex
+        predefined: uuid
+response:
+  status: 200
+  body:
+    fraudCheckStatus: "FRAUD"
+    rejectionReason: "Amount too high"
+  headers:
+    Content-Type: application/vnd.fraud.v1+json;charset=UTF-8
